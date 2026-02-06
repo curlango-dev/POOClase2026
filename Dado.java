@@ -12,7 +12,7 @@ public class Dado
 {
     private int caras;
     private int valor;
-    
+    private int xxx;
     /**
      * Constructor por default.
      * Crea un dado de 6 lados
