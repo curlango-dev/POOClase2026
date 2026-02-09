@@ -1,5 +1,5 @@
 import java.util.Random;
-
+hola como estas
 /**
  * Esta clase modela un dado que puede
  * tener N lados. Por default crea un dado
