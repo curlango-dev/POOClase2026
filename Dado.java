@@ -1,5 +1,5 @@
 import java.util.Random;
-hola como estas
+
 /**
  * Esta clase modela un dado que puede
  * tener N lados. Por default crea un dado
@@ -12,7 +12,7 @@ public class Dado
 {
     private int caras;
     private int valor;
-    private int xxx;
+    
     /**
      * Constructor por default.
      * Crea un dado de 6 lados
