@@ -5,7 +5,7 @@
  * @author (Cecilia Curlango Rosas)
  * @version (a version number or a date)
  */
-public class DadoLCR
+public class DadoLCR 
 {
     private Dado dado;
 
