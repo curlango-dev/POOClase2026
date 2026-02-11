@@ -10,6 +10,14 @@ public class Jugador
     private int fichas;
     private String nombre;
 
+    public Jugador(String nombre) {
+        // mi nombre es el que recibo
+        this.nombre = nombre;
+        fichas = 3;
+    }
+    public String getNombre() {
+        return nombre;
+    }
     public void ganarFichas(int cuantas) {
         fichas += cuantas;
     }
@@ -19,6 +27,8 @@ public class Jugador
             fichas -= cuantas;
         }
     }
+    
+    
 
     public int getFichas() {
         return fichas;
