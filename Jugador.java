@@ -28,8 +28,6 @@ public class Jugador
         }
     }
     
-    
-
     public int getFichas() {
         return fichas;
     }

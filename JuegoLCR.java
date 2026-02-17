@@ -45,6 +45,7 @@ public class JuegoLCR
         int numero = (jugadorEnTurno == 0) ? jugadores.length-1 : jugadorEnTurno-1;
         return jugadores[numero];
     }
+
     public Jugador getJugadorDerecha() {
         // if ()  operador ternario
         // then ?
@@ -52,14 +53,12 @@ public class JuegoLCR
         int numero = (jugadorEnTurno == jugadores.length-1) ? 0 : jugadorEnTurno+1;
         return jugadores[numero];
     }
+
     public void procesarDados() {
-        int cuantosDadosLanza = jugadores[jugadorEnTurno].getFichas();
-        if (cuantosDadosLanza > 3) {
-            cuantosDadosLanza = 3;
-        }
+        int cuantosDadosLanza = getCuantosDadosSeLanzan();
         Jugador izquierda = getJugadorIzquierda();
         Jugador derecha = getJugadorDerecha();
-        
+
         for (int i=0;i<cuantosDadosLanza; i++) {
             switch (dados[i].getValor()) {
                 case "L":
@@ -81,12 +80,17 @@ public class JuegoLCR
         }
     }
 
-    public void lanzarDados() {
-
+    private int getCuantosDadosSeLanzan() {
         int cuantosDadosLanza = jugadores[jugadorEnTurno].getFichas();
         if (cuantosDadosLanza > 3) {
             cuantosDadosLanza = 3;
         }
+        return cuantosDadosLanza;
+
+    }
+
+    public void lanzarDados() {
+        int cuantosDadosLanza = getCuantosDadosSeLanzan();
 
         for (int i=0;i<cuantosDadosLanza; i++) {
             dados[i].lanzar();
@@ -94,6 +98,57 @@ public class JuegoLCR
 
     }
 
+    public Jugador getGanador() {
+        Jugador ganador = null;
+
+        if (hayGanador()) {
+            for (Jugador unJugador : jugadores) { // foreach
+                if (unJugador.getFichas() > 0) {
+                    ganador = unJugador;
+                }
+            }
+        }
+
+        return ganador;
+    }
+
+    public boolean hayGanador() {
+        boolean respuesta = false;
+        int jugadoresConFichas = 0;
+
+        for (int i=0; i<jugadores.length; i++) { // se puede cambiar por foreach
+            if (jugadores[i].getFichas() > 0) {
+                jugadoresConFichas++;
+            }
+        }
+
+        if (jugadoresConFichas==1) {
+            respuesta = true;
+        }
+        return respuesta;
+    }
+
+    public void cambiarTurno() {
+        jugadorEnTurno++;
+        if (jugadorEnTurno == jugadores.length) {
+            jugadorEnTurno = 0;
+        }
+    }
+
+    public String getDados() {
+        String caras = "";
+        int cuantosDados = getCuantosDadosSeLanzan();
+        for (int i=0; i<cuantosDados; i++) {
+            caras = caras + dados[i].getValor() + " ";
+        }
+
+        return caras;
+    }
+
+    
+    
+    
+    
     
     
 }
