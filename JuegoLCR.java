@@ -1,9 +1,9 @@
 
 /**
- * Write a description of class JuegoLCR here.
+ * Contiene todas las reglas del juego Left-Center-Right.
  *
  * @author (Cecilia Curlango Rosas)
- * @version (a version number or a date)
+ * @version (febrero 2026)
  */
 public class JuegoLCR
 {
@@ -145,6 +145,30 @@ public class JuegoLCR
         return caras;
     }
 
+    public Jugador getJugadorActual() {
+        return jugadores[jugadorEnTurno];
+    }
+    
+    public String getEstado() {
+        String estado = "Estado Actual\n";
+        for (int i=0; i<jugadores.length; i++) {
+            Jugador temp = jugadores[i];
+            estado = estado + temp.getNombre() + " fichas: " + temp.getFichas();
+            estado = estado + "\n";
+        }
+        estado = estado + "Centro fichas: " + centro.getFichas() + "\n";
+        return estado;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     

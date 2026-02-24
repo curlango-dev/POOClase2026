@@ -1,9 +1,14 @@
 
 /**
- * Write a description of class DadoLCR here.
+ * Modela una dado de Left-Center-Right.
+ * Tiene las siguientes caras:
+ * * -> 3 caras
+ * L -> 1 cara
+ * C -> 1 cara
+ * R -> 1 cara
  *
  * @author (Cecilia Curlango Rosas)
- * @version (a version number or a date)
+ * @version (febrero 2026)
  */
 public class DadoLCR 
 {

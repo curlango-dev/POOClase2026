@@ -1,9 +1,9 @@
 
 /**
- * Write a description of class Jugador here.
+ * Modela un jugador de Left-Center-Right.
  *
  * @author (Cecilia Curlango Rosas)
- * @version (a version number or a date)
+ * @version (febrero 2026)
  */
 public class Jugador
 {
