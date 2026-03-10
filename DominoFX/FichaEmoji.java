@@ -1,4 +1,4 @@
-package uabc.curlango.demoxxx;
+package uabc.curlango.demodominoxxx;
 
 /**
  * Modela una ficha de dominó. Contiene un String
@@ -7,13 +7,13 @@ package uabc.curlango.demoxxx;
  * @version marzo 2026
  */
 public class FichaEmoji  {
-    private FichaBasica fichaBasica;
+    private Ficha ficha;
     private static final int EMOJI_HORIZONTAL = 0x1F031;
     private static final int EMOJI_VERTICAL = 0x1F071;
     protected String emoji;
 
     public FichaEmoji(int ladoA, int ladoB) {
-        fichaBasica = new FichaBasica(ladoA, ladoB);
+        ficha = new Ficha(ladoA, ladoB);
         int dominoValue = EMOJI_HORIZONTAL + (ladoA * 7) + ladoB;
         emoji = new String(Character.toChars(dominoValue));
     }
@@ -32,11 +32,11 @@ public class FichaEmoji  {
      */
 
     public void intercambiarLados() {
-        fichaBasica.intercambiarLados();
+        ficha.voltear();
         // Cambia el emoji de la ficha
         int dominoValue = EMOJI_HORIZONTAL
-                + (fichaBasica.getLadoA() * 7)
-                + fichaBasica.getLadoB();
+                + (ficha.getLadoA() * 7)
+                + ficha.getLadoB();
         emoji = new String(Character.toChars(dominoValue));
     }
 }
