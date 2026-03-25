@@ -6,15 +6,12 @@ public class Main {
         baraja.mezclar();
         Mano mano = new Mano();
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 10; i++) {
             Carta carta = baraja.getCartaAleatoria();
             mano.agregarCarta(carta);
         }
-        mano.agregarCarta(new Carta(3,"x"));
-        mano.agregarCarta(new Carta(3,"x"));
-        mano.agregarCarta(new Carta(3,"x"));
         System.out.println(mano);
-        if (mano.tieneTercia()) {
+        if (mano.tieneTerciaLambdaTest()) {
             System.out.println("si hay");
         } else {
             System.out.println("No hay");

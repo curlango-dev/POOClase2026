@@ -1,4 +1,7 @@
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -9,9 +12,11 @@ import java.util.stream.Collectors;
  */
 public class Mano {
     private ArrayList<Carta> cartas;
+
     public Mano() {
         cartas = new ArrayList<>();
     }
+
     public void agregarCarta(Carta carta) {
         cartas.add(carta);
     }
@@ -21,7 +26,7 @@ public class Mano {
      */
     public boolean tieneTercia() {
         boolean hayTercia = false;
-        for (Carta carta: cartas) {
+        for (Carta carta : cartas) {
             int cuantas = 0;
             for (int i = 0; i < cartas.size(); i++) {
                 if (carta.getValor() == cartas.get(i).getValor()) {
@@ -34,16 +39,37 @@ public class Mano {
         }
         return hayTercia;
     }
-    public boolean tieneTerciaLambda() {
-       // boolean hayTercia = false;
-        ArrayList<Carta> cartasRepetidas = new ArrayList<>();
-        cartasRepetidas = (ArrayList)cartas.stream()
-                .map(carta->carta.getValor())
-                .filter(FilterUtils.noDistinct())
-                .collect(Collectors.toList());
-        return cartasRepetidas.size()>3;
+
+    // Esta es otra versión para encontrar tercias
+    // Sin usar "clases misteriosas
+    public boolean tieneTerciaLambdaTest() {
+        Map<Integer, Long> frequencyMap = cartas.stream()
+                .map(carta -> carta.getValor())
+                .collect(
+                        Collectors.groupingBy(Function.identity(),
+                                Collectors.counting())
+                );
+//        frequencyMap.forEach((element, count) ->
+//                System.out.println(element + ": " + count));
+
+        return frequencyMap.values()
+                .stream()
+                .filter(v -> v >= 3)
+                .count() >= 1;
 
     }
+
+    public boolean tieneTerciaLambda() {
+        // boolean hayTercia = false;
+        ArrayList<Carta> cartasRepetidas = new ArrayList<>();
+        cartasRepetidas = (ArrayList) cartas.stream()
+                .map(carta -> carta.getValor())
+                .filter(FilterUtils.noDistinct())
+                .collect(Collectors.toList());
+        return cartasRepetidas.size() > 3;
+
+    }
+
     /**
      * Escribe un método en Mano que
      * regrese un ArrayList con todas
@@ -58,13 +84,15 @@ public class Mano {
         }
         return cartasRoja;
     }
+
     public ArrayList<Carta> getCartasRojasLambda() {
         ArrayList<Carta> cartasRoja = new ArrayList<>();
-         cartas.stream()
+        cartas.stream()
                 .filter(carta -> carta.esRoja())
                 .forEach(cartasRoja::add);
-         return cartasRoja;
+        return cartasRoja;
     }
+
     public ArrayList<Carta> getCartasRojasLambda2() {
         return (ArrayList<Carta>) cartas.stream()
                 .filter(carta -> carta.esRoja())
@@ -88,18 +116,17 @@ public class Mano {
     }
 
     public int cuantasMenorA5Lambda() {
-        return (int)cartas.stream()
-                .filter(c -> c.getValor()>5)
+        return (int) cartas.stream()
+                .filter(c -> c.getValor() > 5)
                 .count();
     }
-
-
 
 
     /**
      * Escribe un método en Mano que indique si
      * ésta contiene cartas de un palo particular,
      * el cual recibe como parámetro.
+     *
      * @return
      */
     public boolean tieneCartasDePalo(String palo) {
@@ -113,14 +140,16 @@ public class Mano {
         }
         return siTiene;
     }
+
     public boolean tieneCartasDePaloLambda(String palo) {
 
-        return (int)cartas.stream()
+        return (int) cartas.stream()
                 .filter(carta -> carta.getPalo().equals(palo))
                 .count() > 0;
 
 
     }
+
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
